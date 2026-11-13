@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config';
 // to `/<repo-name>` (or set it to '/' for a user site).
 export default defineConfig({
   site: 'https://gusdv16.github.io',
-  base: '/mew-style-site',
+  base: '/nova-web',
   output: 'static',
   trailingSlash: 'ignore',
   build: {

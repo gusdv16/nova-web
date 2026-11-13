@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gusdv16.github.io/mew-style-site/sitemap.xml
+Sitemap: https://gusdv16.github.io/nova-web/sitemap.xml

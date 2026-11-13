@@ -2,7 +2,7 @@
 
 A cinematic, motion-first landing page built as a front-end portfolio piece. The visual language and interaction patterns are inspired by [mew.xyz](https://mew.xyz/), but the brand, copy, palette and artwork are original.
 
-**Live demo:** https://gusdv16.github.io/mew-style-site/
+**Live demo:** https://gusdv16.github.io/nova-web/
 
 ## What it demonstrates
 
@@ -28,7 +28,7 @@ A cinematic, motion-first landing page built as a front-end portfolio piece. The
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/mew-style-site/
+npm run dev      # http://localhost:4321/nova-web/
 npm run build    # outputs to dist/
 npm run preview  # previews the production build
 ```
