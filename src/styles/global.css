@@ -23,7 +23,7 @@ img { max-width: 100%; display: block; }
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); z-index: 10000; }
 
 /* preloader */
-.preloader { position: fixed; inset: 0; z-index: 10001; background: var(--bg); display: grid; place-items: center; transition: opacity .6s ease, visibility .6s ease; }
+.preloader { position: fixed; inset: 0; z-index: 10001; background: var(--bg); display: grid; place-items: center; transition: opacity .4s ease, visibility .4s ease; }
 .preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
 .preloader-inner { text-align: center; }
 .preloader-logo { font-size: 5rem; color: var(--accent); margin-bottom: 1.5rem; }
@@ -39,6 +39,15 @@ img { max-width: 100%; display: block; }
   width: 34px; height: 34px; border: 1.5px solid #fff; border-radius: 50%;
   transform: translate(-50%, -50%); transition: width .2s, height .2s, background .2s;
 }
+/* etiqueta del cursor (drag / play) */
+.cursor.hover { width: 58px; height: 58px; background: rgba(180, 255, 58, .14); }
+.cursor span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #fff; opacity: 0; transition: opacity .2s; }
+.cursor.has-label { width: 84px !important; height: 84px !important; background: rgba(180, 255, 58, .9) !important; mix-blend-mode: normal; }
+.cursor.has-label span { opacity: 1; color: #0a0612; }
+
+/* efectos de partículas (clic y estela) */
+.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9997; }
+
 .cursor-dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; transform: translate(-50%, -50%); }
 
 /* typography */
@@ -90,7 +99,7 @@ section { position: relative; }
 
 /* reveal */
 .reveal { opacity: 0; transform: translateY(40px); }
-.reveal.in { opacity: 1; transform: none; transition: opacity .9s ease, transform .9s ease; }
+.reveal.in { opacity: 1; transform: none; transition: opacity .9s ease var(--d, 0s), transform .9s ease var(--d, 0s); }
 
 /* parallax layer */
 .parallax { will-change: transform; }
@@ -105,3 +114,7 @@ section { position: relative; }
   .cursor, .cursor-dot { display: none; }
   .container { padding: 0 1.2rem; }
 }
+
+/* dentro del diálogo se usa el cursor normal */
+.player, .player * { cursor: auto; }
+.player button { cursor: pointer; }

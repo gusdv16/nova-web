@@ -1,0 +1,18 @@
+---
+// Imagen optimizada: AVIF + WebP, varios anchos y `sizes`. Las imágenes con `eager` son las que se ven al cargar.
+import { Picture } from 'astro:assets';
+const { img, alt = '', widths = [480, 800, 1200], sizes = '100vw', eager = false, pos, quality = 50, class: cls } = Astro.props;
+---
+<Picture
+  src={img}
+  alt={alt}
+  formats={['avif', 'webp']}
+  widths={widths}
+  sizes={sizes}
+  quality={quality}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+  class={cls}
+  style={pos ? `object-position:${pos}` : undefined}
+/>

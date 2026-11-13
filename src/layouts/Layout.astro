@@ -1,5 +1,11 @@
 ---
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/bebas-neue/latin-400.css';
+import interUrl from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import bebasUrl from '@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff2?url';
 import '../styles/global.css';
+import '../styles/home.css';
 
 const {
   title = 'NOVA — A cosmic cat in a world of dogs',
@@ -34,23 +40,31 @@ const ogImage = new URL(`${base}og.jpg`, origin).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&family=Anton&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fuentes autoalojadas: sin pedidos a terceros; se precargan las dos que se usan arriba -->
+    <link rel="preload" as="font" type="font/woff2" href={interUrl} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={bebasUrl} crossorigin />
+
+    <!-- Marca la página como "cargando" hasta que termine el preloader; si el JS fallara, se libera a los 6 s -->
+    <script is:inline>
+      document.documentElement.classList.add('js-pre');
+      setTimeout(function () {
+        document.documentElement.classList.remove('js-pre');
+        var p = document.getElementById('preloader');
+        if (p) p.classList.add('done');
+      }, 6000);
+    </script>
 
     <noscript>
       <style>
         .preloader { display: none !important; }
         .reveal { opacity: 1 !important; transform: none !important; }
-        .hero-title .char { opacity: 1 !important; transform: none !important; }
+        .burger { display: none !important; }
+        .nav-links { display: flex !important; }
       </style>
     </noscript>
   </head>
   <body class="grain">
-    <div class="preloader" id="preloader">
+    <div class="preloader" id="preloader" aria-hidden="true">
       <div class="preloader-inner">
         <div class="preloader-logo display">NOVA</div>
         <div class="preloader-bar"><span></span></div>
@@ -58,7 +72,8 @@ const ogImage = new URL(`${base}og.jpg`, origin).href;
       </div>
     </div>
     <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+    <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
     <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
     <slot />
     <script>
