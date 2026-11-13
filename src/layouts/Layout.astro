@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+
+const {
+  title = 'NOVA — A cosmic cat in a world of dogs',
+  description = 'A cinematic, animation-driven landing page built with Astro, GSAP and Lenis. Portfolio piece by Gustavo Bentancor.',
+} = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+const origin = Astro.site ?? new URL('https://example.com');
+const canonical = new URL(base, origin).href;
+const ogImage = new URL(`${base}og.jpg`, origin).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0612" />
+    <meta name="author" content="Gustavo Bentancor" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&family=Anton&display=swap"
+      rel="stylesheet"
+    />
+
+    <noscript>
+      <style>
+        .preloader { display: none !important; }
+        .reveal { opacity: 1 !important; transform: none !important; }
+        .hero-title .char { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+  </head>
+  <body class="grain">
+    <div class="preloader" id="preloader">
+      <div class="preloader-inner">
+        <div class="preloader-logo display">NOVA</div>
+        <div class="preloader-bar"><span></span></div>
+        <div class="preloader-text">initializing cosmos…</div>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <slot />
+    <script>
+      import '../scripts/main.js';
+    </script>
+  </body>
+</html>

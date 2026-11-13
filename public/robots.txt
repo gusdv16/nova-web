@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gusdv16.github.io/mew-style-site/sitemap.xml
